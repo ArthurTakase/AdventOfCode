@@ -1,3 +1,5 @@
+const div = document.getElementById('result')
+
 function day01_part01(input) {
     var nbIncreased = 0
     var nbDecreased = 0
@@ -9,9 +11,9 @@ function day01_part01(input) {
         if (input[i] < input[i - 1]) { nbDecreased += 1; continue }
     }
 
-    document.body.innerHTML += "<br>Part 01<br>"
-    document.body.innerHTML += "Increased -> " + nbIncreased + "<br>"
-    document.body.innerHTML += "Decreased -> " + nbDecreased + "<br>"
+    div.innerHTML += "Part 01<br>"
+    div.innerHTML += "Increased -> " + nbIncreased + "<br>"
+    div.innerHTML += "Decreased -> " + nbDecreased + "<br>"
 }
 
 function day01_part02(input) {
@@ -28,9 +30,9 @@ function day01_part02(input) {
         lastSum = sum
     }
 
-    document.body.innerHTML += "<br>Part 02<br>"
-    document.body.innerHTML += "Increased -> " + nbIncreased + "<br>"
-    document.body.innerHTML += "Decreased -> " + nbDecreased + "<br>"
+    div.innerHTML += "<br>Part 02<br>"
+    div.innerHTML += "Increased -> " + nbIncreased + "<br>"
+    div.innerHTML += "Decreased -> " + nbDecreased + "<br>"
 }
 
 function day01(input) {
