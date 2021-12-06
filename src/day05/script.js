@@ -13,25 +13,25 @@ function generateTab() {
     return result
 }
 
-function changeY(result, start, end, x) {
-    var y = start
+function changeAxis(result, start, end, fixe, axe) {
     var sens = start < end ? "plus" : "moins"
 
     while (start != end) {
-        y = start
-        result[y][x] += 1
+        if (axe == "x") { result[fixe][start] += 1 }
+        if (axe == "y") { result[start][fixe] += 1 }
         start = sens == "plus" ? start + 1 : start - 1
     }
 }
 
-function changeX(result, start, end, y) {
-    var x = start
-    var sens = start < end ? "plus" : "moins"
+function drawDiag(x1, y1, x2, y2, result) {
+    var xsens = x1 < x2 ? "plus" : "moins",
+        ysens = y1 < y2 ? "plus" : "moins",
+        len = xsens == "plus" ? x2 - x1 + 1 : x1 - x2 + 1
 
-    while (start != end) {
-        x = start
-        result[y][x] += 1
-        start = sens == "plus" ? start + 1 : start - 1
+    for (var i = 0; i != len; i++) {
+        result[y1][x1] += 1
+        x1 = xsens == "plus" ? x1 + 1 : x1 - 1
+        y1 = ysens == "plus" ? y1 + 1 : y1 - 1
     }
 }
 
@@ -49,29 +49,21 @@ function getMax(result) {
 
 function part01(input, result) {
     for (var k in input) {
-        if (input[k][0][0] == input[k][1][0] || input[k][0][1] == input[k][1][1]) {
-            result[input[k][1][1]][input[k][1][0]] += 1
-            changeY(result, input[k][0][1], input[k][1][1], input[k][0][0])
-            changeX(result, input[k][0][0], input[k][1][0], input[k][0][1])
+        var x1 = input[k][0][0],
+            y1 = input[k][0][1],
+            x2 = input[k][1][0],
+            y2 = input[k][1][1]
+
+        if (x1 == x2 || y1 == y2) {
+            result[y2][x2] += 1
+            changeAxis(result, y1, y2, x1, "y")
+            changeAxis(result, x1, x2, y1, "x")
         }
     }
 
     div.innerHTML += "Part 1<br>"
     div.innerHTML += "Result: " + getMax(result)
 }
-
-function drawDiag(x1, y1, x2, y2, result) {
-    var xsens = x1 < x2 ? "plus" : "moins",
-        ysens = y1 < y2 ? "plus" : "moins",
-        len = xsens == "plus" ? x2 - x1 + 1 : x1 - x2 + 1
-
-    for (var i = 0; i != len; i++) {
-        result[y1][x1] += 1
-        x1 = xsens == "plus" ? x1 + 1 : x1 - 1
-        y1 = ysens == "plus" ? y1 + 1 : y1 - 1
-    }
-}
-
 
 function part02(input, result) {
     for (var k in input) {
@@ -81,9 +73,9 @@ function part02(input, result) {
             y2 = input[k][1][1]
 
         if (x1 == x2 || y1 == y2) {
-            result[input[k][1][1]][input[k][1][0]] += 1
-            changeY(result, y1, y2, x1)
-            changeX(result, x1, x2, y1)
+            result[y2][x2] += 1
+            changeAxis(result, y1, y2, x1, "y")
+            changeAxis(result, x1, x2, y1, "x")
         } else { drawDiag(x1, y1, x2, y2, result) }
     }
 
