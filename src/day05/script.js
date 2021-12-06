@@ -74,9 +74,6 @@ function drawDiag(x1, y1, x2, y2, result) {
 
 
 function part02(input, result) {
-
-    console.log("part 02")
-
     for (var k in input) {
         var x1 = input[k][0][0],
             y1 = input[k][0][1],
@@ -84,7 +81,6 @@ function part02(input, result) {
             y2 = input[k][1][1]
 
         if (x1 == x2 || y1 == y2) {
-            console.log("line")
             result[input[k][1][1]][input[k][1][0]] += 1
             changeY(result, y1, y2, x1)
             changeX(result, x1, x2, y1)
