@@ -1,5 +1,3 @@
-const div = document.getElementById('result')
-
 function day01_part01(input) {
     var nbIncreased = 0
     var nbDecreased = 0
@@ -11,9 +9,7 @@ function day01_part01(input) {
         if (input[i] < input[i - 1]) { nbDecreased += 1; continue }
     }
 
-    div.innerHTML += "Part 01<br>"
-    div.innerHTML += "Increased -> " + nbIncreased + "<br>"
-    div.innerHTML += "Decreased -> " + nbDecreased + "<br>"
+    console.log(nbIncreased, nbDecreased)
 }
 
 function day01_part02(input) {
@@ -30,18 +26,12 @@ function day01_part02(input) {
         lastSum = sum
     }
 
-    div.innerHTML += "<br>Part 02<br>"
-    div.innerHTML += "Increased -> " + nbIncreased + "<br>"
-    div.innerHTML += "Decreased -> " + nbDecreased + "<br>"
+    console.log(nbIncreased, nbDecreased)
 }
 
-function day01(input) {
-    day01_part01(input)
-    day01_part02(input)
-}
-
-fetch("./input.json")
-    .then(response => {
-        return response.json();
-    })
-    .then(data => day01(data));
+fetch("./docs/day01.json")
+    .then(response => { return response.json(); })
+    .then(data => {
+        day01_part01(data)
+        day01_part02(data)
+    });

@@ -1,5 +1,3 @@
-const div = document.getElementById('result')
-
 function searchLow(input) {
     var lowValue = []
 
@@ -23,23 +21,15 @@ function searchLow(input) {
 
 function checkRisk(lowValue) {
     var result = 0
-
     for (var i = 0; i != lowValue.length; i++) { result += parseInt(lowValue[i]) + 1 }
-
     return result
-}
-
-function day09(input) {
-    var lowPoints = searchLow(input)
-
-    div.innerHTML = "Part 1<br>"
-    div.innerHTML += checkRisk(lowPoints)
-
-
 }
 
 fetch("./input.json")
     .then(response => {
         return response.json();
     })
-    .then(data => day09(data));
+    .then(data => {
+        var lowPoints = searchLow(input)
+        console.log(`Part 1: ${checkRisk(lowPoints)}`)
+    });

@@ -1,4 +1,3 @@
-const div = document.getElementById('result')
 const max = 989
 
 function generateTab() {
@@ -61,8 +60,7 @@ function part01(input, result) {
         }
     }
 
-    div.innerHTML += "Part 1<br>"
-    div.innerHTML += "Result: " + getMax(result)
+    console.log(`Part 1: ${getMax(result)}`)
 }
 
 function part02(input, result) {
@@ -79,18 +77,14 @@ function part02(input, result) {
         } else { drawDiag(x1, y1, x2, y2, result) }
     }
 
-    div.innerHTML += "<br><br>Part 2<br>"
-    div.innerHTML += "Result: " + getMax(result)
+    console.log(`Part 2: ${getMax(result)}`)
 }
 
-
-function day(input) {
-    part01(input, generateTab())
-    part02(input, generateTab())
-}
-
-fetch("./input.json")
+fetch("./docs/day05.json")
     .then(response => {
         return response.json();
     })
-    .then(data => day(data));
+    .then(data => {
+        part01(data, generateTab())
+        part02(data, generateTab())
+    });

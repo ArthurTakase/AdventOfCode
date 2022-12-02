@@ -1,5 +1,3 @@
-const div = document.getElementById('result')
-
 function part01(input) {
     var resultBit = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         len = input.length,
@@ -20,10 +18,7 @@ function part01(input) {
         }
     }
 
-    div.innerHTML += "Part 1<br>"
-    div.innerHTML += "Gamma: " + gamma + "<br>"
-    div.innerHTML += "Epsilon: " + epsilon + "<br>"
-    div.innerHTML += "Result: " + parseInt(gamma, 2) * parseInt(epsilon, 2)
+    console.log(`Part 1: Gamma: ${gamma}, Epsilon: ${epsilon}, Result: ${parseInt(gamma, 2) * parseInt(epsilon, 2)}`)
 }
 
 function getMax(input, colNb) {
@@ -56,20 +51,12 @@ function part02(input) {
         }
     }
 
-    div.innerHTML += "<br><br>Part 2<br>"
-    div.innerHTML += "Co2: " + co2[0] + "<br>"
-    div.innerHTML += "Oxygen: " + oxygen[0] + "<br>"
-    div.innerHTML += "Result: " + parseInt(co2[0], 2) * parseInt(oxygen[0], 2)
+    console.log(`Part 2: Oxygen: ${oxygen[0]}, CO2: ${co2[0]}, Result: ${parseInt(oxygen[0], 2) * parseInt(co2[0], 2)}`)
 }
 
-
-function day(input) {
-    part01(input)
-    part02(input)
-}
-
-fetch("./input.json")
-    .then(response => {
-        return response.json();
-    })
-    .then(data => day(data));
+fetch("./docs/day03.json")
+    .then(response => { return response.json(); })
+    .then(data => {
+        part01(data)
+        part02(data)
+    });

@@ -1,5 +1,3 @@
-const div = document.getElementById('result')
-
 function day02_part01(input) {
     var y = 0,
         x = 0
@@ -22,9 +20,7 @@ function day02_part01(input) {
         }
     }
 
-    div.innerHTML += "Part 1<br>"
-    div.innerHTML += "X: " + x + ", Y: " + y + "<br>"
-    div.innerHTML += "Result: " + x * y
+    console.log(`Part 1: X: ${x}, Y: ${y}, Result: ${x * y}`)
 }
 
 function day02_part02(input) {
@@ -51,19 +47,12 @@ function day02_part02(input) {
         }
     }
 
-    div.innerHTML += "<br><br>Part 2<br>"
-    div.innerHTML += "X: " + x + ", Y: " + y + "<br>"
-    div.innerHTML += "Result: " + x * y
+    console.log(`Part 2: X: ${x}, Y: ${y}, Result: ${x * y}`)
 }
 
-
-function day02(input) {
-    day02_part01(input)
-    day02_part02(input)
-}
-
-fetch("./input.json")
-    .then(response => {
-        return response.json();
-    })
-    .then(data => day02(data));
+fetch("./docs/day02.json")
+    .then(response => { return response.json(); })
+    .then(data => {
+        day02_part01(data)
+        day02_part02(data)
+    });

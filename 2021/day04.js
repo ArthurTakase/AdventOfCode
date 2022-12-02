@@ -1,4 +1,3 @@
-const div = document.getElementById('result')
 const order = [4, 77, 78, 12, 91, 82, 48, 59, 28,
     26, 34, 10, 71, 89, 54, 63, 66, 75,
     15, 22, 39, 55, 83, 47, 81, 74, 2,
@@ -65,9 +64,7 @@ function part01(input) {
     var best = bingo(input)
     var result = score(best)
 
-    div.innerHTML += "Part 1<br>"
-    div.innerHTML += "Somme: " + result[0] + "<br>"
-    div.innerHTML += "Result: " + result[1]
+    console.log(`Part 1: Somme: ${result[0]}, Result: ${result[1]}`)
 }
 
 
@@ -79,19 +76,12 @@ function part02(input) {
 
     var result = score(best)
 
-    div.innerHTML += "<br><br>Part 2<br>"
-    div.innerHTML += "Somme: " + result[0] + "<br>"
-    div.innerHTML += "Result: " + result[1]
+    console.log(`Part 2: Somme: ${result[0]}, Result: ${result[1]}`)
 }
 
-
-function day(input) {
-    part01(input)
-    part02([...input])
-}
-
-fetch("./input.json")
-    .then(response => {
-        return response.json();
-    })
-    .then(data => day(data));
+fetch("./docs/day04.json")
+    .then(response => { return response.json(); })
+    .then(data => {
+        part01(data)
+        part02([...data])
+    });

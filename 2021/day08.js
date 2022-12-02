@@ -1,5 +1,3 @@
-const div = document.getElementById('result')
-
 function compare(a, b, type) {
     a = a.split("")
     b = b.split("")
@@ -73,22 +71,20 @@ function getDigit(pattern, digits) {
     return parseInt(result)
 }
 
-function day08(input) {
-    var pattern
-    var result = 0
-
-    for (var i in input) {
-        pattern = findNumber(input[i][0])
-        var temp = getDigit(pattern, input[i][1])
-        result += temp
-        console.log(input[i][1], temp)
-    }
-
-    div.innerHTML = "Part2<br>" + result
-}
-
-fetch("./input2.json")
+fetch("./docs/day08.json")
     .then(response => {
         return response.json();
     })
-    .then(data => day08(data));
+    .then(data => {
+        var pattern
+        var result = 0
+
+        for (var i in data) {
+            pattern = findNumber(data[i][0])
+            var temp = getDigit(pattern, data[i][1])
+            result += temp
+            console.log(data[i][1], temp)
+        }
+
+        console.log(`Part 2: ${result}`)
+    });
