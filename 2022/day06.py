@@ -1,6 +1,6 @@
 from openFile import openFile
 
-def main(txt: list, size: int) -> str:
+def main(txt: list, size: int) -> int:
     for i in range(len(txt)):
         if len(set(txt[i:i + size])) == i + size:
             return i + size
