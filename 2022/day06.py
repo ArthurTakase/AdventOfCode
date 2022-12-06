@@ -2,7 +2,7 @@ from openFile import openFile
 
 def main(txt: list, size: int) -> str:
     for i in range(len(txt)):
-        if len(set(txt[i:i + size])) == len(txt[i:i + size]):
+        if len(set(txt[i:i + size])) == i + size:
             return i + size
 
 file = openFile("docs/day06ex.txt")
