@@ -1,31 +1,19 @@
 from openFile import openFile
 
-def newElf(data: list, i: int):
-    elf = 0
-    while i < len(data):
-        if data[i] == "":
-            break
+def newElf(data: list, i: int, elf: int = 0):
+    while i < len(data) and data[i] != "":
         elf += int(data[i])
         i += 1
     i += 1
     return elf, i
 
-def main(data: list) -> None:
-    i: int = 0
-    j: int = 0
-    elf = {}
+def main(data: list, i: int = 0, elf = []) -> None:
     while i < len(data):
-        elf[j], i = newElf(data, i)
-        j += 1
+        value, i = newElf(data, i)
+        elf.append(value)
 
-    one: int = max(elf.values())
-    del elf[max(elf, key=elf.get)]
-    two: int = max(elf.values())
-    del elf[max(elf, key=elf.get)]
-    three: int = max(elf.values())
-
-    print(f"Part 1: {one}")
-    print(f"Part 2: {one + two + three}")
-
+    elf.sort(reverse=True)
+    print(f"Part 1: {elf[0]}")
+    print(f"Part 2: {sum(elf[:3])}")
 
 main(openFile("docs/day01.txt"))
